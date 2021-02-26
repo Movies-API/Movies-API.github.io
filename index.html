@@ -268,7 +268,7 @@
 
 						['collaps', 'alloha', 'hdvb', 'videocdn', 'kodik', 'bazon'].forEach(function(v) {
 							if (!dataPoints[t][s][v]) return;
-							$.getJSON("https://movies-api.github.io/" + v + "/statistics.json?" + Math.floor(Math.random() * 9e9), function(data) {
+							$.getJSON("https://api-movies.github.io/" + v + "/statistics.json?" + Math.floor(Math.random() * 9e9), function(data) {
 								for (var i = 0; i < data.length; i++) {
 									if (t === 'all') {
 										dataPoints[t][s][v].push({
@@ -288,75 +288,139 @@
 					});
 				});
 
-				// var d = {};
-				// var l = {};
-				// var u = {};
-				// ['movie_kinopoisk_ids', 'tv_kinopoisk_ids', 'movie_imdb_ids', 'tv_imdb_ids'].forEach(function(f) {
-				// 	d[f] = {};
-				// 	l[f] = {};
-				// 	u[f] = {};
-				// 	$.getJSON("https://api-movies.github.io/collaps/" + f + ".json?" + Math.floor(Math.random() * 9e9), function(data) {
-				// 		if (data && data.length) {
-				// 			d[f]['collaps'] = data.map(function(id) {return (id + '').replace(/[^0-9]/g,'');});
-				// 			l[f]['collaps'] = d[f]['collaps'].length;
-				// 			u[f]['collaps'] = [];
-				// 		}
-				// 		$.getJSON("https://api-movies.github.io/alloha/" + f + ".json?" + Math.floor(Math.random() * 9e9), function(data) {
-				// 			if (data && data.length) {
-				// 				d[f]['alloha'] = data.map(function(id) {return (id + '').replace(/[^0-9]/g,'');});
-				// 				l[f]['alloha'] = d[f]['alloha'].length;
-				// 				u[f]['alloha'] = [];
-				// 			}
-				// 			$.getJSON("https://api-movies.github.io/hdvb/" + f + ".json?" + Math.floor(Math.random() * 9e9), function(data) {
-				// 				if (data && data.length) {
-				// 					d[f]['hdvb'] = data.map(function(id) {return (id + '').replace(/[^0-9]/g,'');});
-				// 					l[f]['hdvb'] = d[f]['hdvb'].length;
-				// 					u[f]['hdvb'] = [];
-				// 				}
-				// 				$.getJSON("https://api-movies.github.io/videocdn/" + f + ".json?" + Math.floor(Math.random() * 9e9), function(data) {
-				// 					if (data && data.length) {
-				// 						d[f]['videocdn'] = data.map(function(id) {return (id + '').replace(/[^0-9]/g,'');});
-				// 						l[f]['videocdn'] = d[f]['videocdn'].length;
-				// 						u[f]['videocdn'] = [];
-				// 					}
-				// 					$.getJSON("https://api-movies.github.io/kodik/" + f + ".json?" + Math.floor(Math.random() * 9e9), function(data) {
-				// 						if (data && data.length) {
-				// 							d[f]['kodik'] = data.map(function(id) {return (id + '').replace(/[^0-9]/g,'');});
-				// 							l[f]['kodik'] = d[f]['kodik'].length;
-				// 							u[f]['kodik'] = [];
-				// 						}
-				// 						$.getJSON("https://api-movies.github.io/bazon/" + f + ".json?" + Math.floor(Math.random() * 9e9), function(data) {
-				// 							if (data && data.length) {
-				// 								d[f]['bazon'] = data.map(function(id) {return (id + '').replace(/[^0-9]/g,'');});
-				// 								l[f]['bazon'] = d[f]['bazon'].length;
-				// 								u[f]['bazon'] = [];
-				// 							}
-				// 							var table = document.querySelector('#table-' + f);
-				// 							var tbody = document.querySelector('#tbody-' + f);
-				// 							['collaps', 'alloha', 'hdvb', 'videocdn', 'kodik', 'bazon'].forEach(function(v1) {
-				// 								if (d[f][v1]) {
-				// 									var other_ids = [];
-				// 									['collaps', 'alloha', 'hdvb', 'videocdn', 'kodik', 'bazon'].forEach(function(v2) {
-				// 										if (v1 !== v2 && d[f][v2]) {
-				// 											other_ids = arrayUnique(other_ids, d[f][v2]);
-				// 										}
-				// 									});
-				// 									u[f][v1] = d[f][v1].filter(function(id) {
-				// 										return other_ids.indexOf(id) === -1
-				// 									});
-				// 									var tr = document.createElement('tr');
-				// 									tr.innerHTML = '<tr><th scope="col">' + v1 + '</th><th scope="col">' + l[f][v1] + '</th><th scope="col">' + u[f][v1].length + '</th></tr>';
-				// 									tbody.appendChild(tr);
-				// 								}
-				// 							});
-				// 							table.style.display = 'block';
-				// 						});
-				// 					});
-				// 				});
-				// 			});
-				// 		});
-				// 	});
-				// });
+				var unique = {};
+				var uniquePoints = {
+					movie_kinopoisk_ids: {
+						"collaps": [],
+						"alloha": [],
+						"hdvb": [],
+						"videocdn": [],
+						"kodik": [],
+						"bazon": []
+					},
+					tv_kinopoisk_ids: {
+						"collaps": [],
+						"alloha": [],
+						"hdvb": [],
+						"videocdn": [],
+						"kodik": [],
+						"bazon": []
+					},
+					movie_imdb_ids: {
+						"collaps": [],
+						"alloha": [],
+						"hdvb": [],
+						"videocdn": [],
+						"kodik": [],
+						"bazon": []
+					},
+					tv_imdb_ids: {
+						"collaps": [],
+						"alloha": [],
+						"hdvb": [],
+						"videocdn": [],
+						"kodik": [],
+						"bazon": []
+					}
+				};
+				var uniqueTitles = {
+					movie_kinopoisk_ids: "Уникальных фильмов (ID КиноПоиск)",
+					tv_kinopoisk_ids: "Уникальных сериалов (ID КиноПоиск)",
+					movie_imdb_ids: "Уникальных фильмов (ID IMDb)",
+					tv_imdb_ids: "Уникальных сериалов (ID IMDb)"
+				}
+
+				$.getJSON("https://api-movies.github.io/unique.json?" + Math.floor(Math.random() * 9e9), function(data) {
+					['movie_kinopoisk_ids', 'tv_kinopoisk_ids', 'movie_imdb_ids', 'tv_imdb_ids'].forEach(function(f) {
+						unique[f] = new CanvasJS.Chart("unique-" + f, {
+							theme: "dark2",
+							title: {
+								fontFamily: 'Comfortaa',
+								text: uniqueTitles[f]
+							},
+							axisX: {
+								gridColor: "#32373a",
+								valueFormatString: "DD MMM YYYY",
+								intervalType: "day",
+								interval: 1
+							},
+							axisY2: {
+								gridColor: "#32373a",
+								title: "",
+								prefix: "",
+								suffix: ""
+							},
+							toolTip: {
+								shared: true
+							},
+							legend: {
+								cursor: "pointer",
+								verticalAlign: "top",
+								horizontalAlign: "center",
+								dockInsidePlotArea: false
+							},
+							data: [{
+								type:"line",
+								axisYType: "secondary",
+								name: "collaps",
+								showInLegend: true,
+								markerSize: 0,
+								yValueFormatString: "#,###",
+								dataPoints: uniquePoints[f]['collaps']
+							},{
+								type:"line",
+								axisYType: "secondary",
+								name: "alloha",
+								showInLegend: true,
+								markerSize: 0,
+								yValueFormatString: "#,###",
+								dataPoints: uniquePoints[f]['alloha']
+							},{
+								type:"line",
+								axisYType: "secondary",
+								name: "hdvb",
+								showInLegend: true,
+								markerSize: 0,
+								yValueFormatString: "#,###",
+								dataPoints: uniquePoints[f]['hdvb']
+							},{
+								type:"line",
+								axisYType: "secondary",
+								name: "videocdn",
+								showInLegend: true,
+								markerSize: 0,
+								yValueFormatString: "#,###",
+								dataPoints: uniquePoints[f]['videocdn']
+							},{
+								type:"line",
+								axisYType: "secondary",
+								name: "kodik",
+								showInLegend: true,
+								markerSize: 0,
+								yValueFormatString: "#,###",
+								dataPoints: uniquePoints[f]['kodik']
+							},{
+								type:"line",
+								axisYType: "secondary",
+								name: "bazon",
+								showInLegend: true,
+								markerSize: 0,
+								yValueFormatString: "#,###",
+								dataPoints: uniquePoints[f]['bazon']
+							}]
+						});
+						['collaps', 'alloha', 'hdvb', 'videocdn', 'kodik', 'bazon'].forEach(function(v) {
+							for (var i = 0; i < data.length; i++) {
+								if (!data[i]['unique'][v + '_' + f]) continue;
+								uniquePoints[f][v].push({
+									x: new Date(parseInt(data[i].date) * 1000),
+									y: parseInt(data[i]['unique'][v + '_' + f])
+								});
+							}
+						});
+						unique[f].render();
+					});
+				});
 
 			}
 		</script>
@@ -380,75 +444,27 @@
 						</div>
 						<div class="col-md-6 my-5">
 							<div id="chartContainer-movies-kinopoisk" class="chart"></div>
-							<div class="mt-3">
-								<table class="table table-sm table-dark table-bordered" id="table-movie_kinopoisk_ids" style="display: none">
-									<thead id="thead-movie_kinopoisk_ids">
-										<tr>
-											<th scope="col"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-play-fill" viewBox="0 0 16 16">
-  <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm6.258-6.437a.5.5 0 0 1 .507.013l4 2.5a.5.5 0 0 1 0 .848l-4 2.5A.5.5 0 0 1 6 12V7a.5.5 0 0 1 .258-.437z"/>
-</svg></th>
-											<th scope="col">Фильмов</th>
-											<th scope="col">Уникальных</th>
-										</tr>
-									</thead>
-									<tbody id="tbody-movie_kinopoisk_ids">
-									</tbody>
-								</table>
-							</div>
+						</div>
+						<div class="col-md-6 my-5">
+							<div id="unique-movie_kinopoisk_ids" class="chart"></div>
 						</div>
 						<div class="col-md-6 my-5">
 							<div id="chartContainer-tv-kinopoisk" class="chart"></div>
-							<div class="table-responsive mt-3">
-								<table class="table table-sm table-dark table-bordered" id="table-tv_kinopoisk_ids" style="display: none">
-									<thead id="thead-tv_kinopoisk_ids">
-										<tr>
-											<th scope="col"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-play-fill" viewBox="0 0 16 16">
-  <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm6.258-6.437a.5.5 0 0 1 .507.013l4 2.5a.5.5 0 0 1 0 .848l-4 2.5A.5.5 0 0 1 6 12V7a.5.5 0 0 1 .258-.437z"/>
-</svg></th>
-											<th scope="col">Сериалов</th>
-											<th scope="col">Уникальных</th>
-										</tr>
-									</thead>
-									<tbody id="tbody-tv_kinopoisk_ids">
-									</tbody>
-								</table>
-							</div>
+						</div>
+						<div class="col-md-6 my-5">
+							<div id="unique-tv_kinopoisk_ids" class="chart"></div>
 						</div>
 						<div class="col-md-6 my-5">
 							<div id="chartContainer-movies-imdb" class="chart"></div>
-							<div class="table-responsive mt-3">
-								<table class="table table-sm table-dark table-bordered" id="table-movie_imdb_ids" style="display: none">
-									<thead id="thead-movie_imdb_ids">
-										<tr>
-											<th scope="col"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-play-fill" viewBox="0 0 16 16">
-  <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm6.258-6.437a.5.5 0 0 1 .507.013l4 2.5a.5.5 0 0 1 0 .848l-4 2.5A.5.5 0 0 1 6 12V7a.5.5 0 0 1 .258-.437z"/>
-</svg></th>
-											<th scope="col">Фильмов</th>
-											<th scope="col">Уникальных</th>
-										</tr>
-									</thead>
-									<tbody id="tbody-movie_imdb_ids">
-									</tbody>
-								</table>
-							</div>
+						</div>
+						<div class="col-md-6 my-5">
+							<div id="unique-movie_imdb_ids" class="chart"></div>
 						</div>
 						<div class="col-md-6 my-5">
 							<div id="chartContainer-tv-imdb" class="chart"></div>
-							<div class="table-responsive mt-3">
-								<table class="table table-sm table-dark table-bordered" id="table-tv_imdb_ids" style="display: none">
-									<thead id="thead-tv_imdb_ids">
-										<tr>
-											<th scope="col"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-play-fill" viewBox="0 0 16 16">
-  <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm6.258-6.437a.5.5 0 0 1 .507.013l4 2.5a.5.5 0 0 1 0 .848l-4 2.5A.5.5 0 0 1 6 12V7a.5.5 0 0 1 .258-.437z"/>
-</svg></th>
-											<th scope="col">Сериалов</th>
-											<th scope="col">Уникальных</th>
-										</tr>
-									</thead>
-									<tbody id="tbody-tv_imdb_ids">
-									</tbody>
-								</table>
-							</div>
+						</div>
+						<div class="col-md-6 my-5">
+							<div id="unique-tv_imdb_ids" class="chart"></div>
 						</div>
 						<div class="col-md-6 my-5">
 							<div id="chartContainer-movies-tmdb" class="chart"></div>
