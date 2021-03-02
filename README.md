@@ -1,22 +1,22 @@
 # API Movies
 
-<a href="https://API-Movies.github.io"><img src="https://API-Movies.github.io/banner.png"></a>
+<a href="https://Movies-API.github.io"><img src="https://Movies-API.github.io/banner.png"></a>
 
 ### The movie/tv statistics in graphs:
 
-- https://API-Movies.github.io
+- https://Movies-API.github.io
 
 ### Finding inconsistencies in the database:
 
-- https://API-Movies.github.io/test.html
+- https://Movies-API.github.io/test.html
 
 ### The movie/tv API lists:
 
-- https://github.com/API-Movies/collaps
-- https://github.com/API-Movies/alloha
-- https://github.com/API-Movies/hdvb
-- https://github.com/API-Movies/videocdn
-- https://github.com/API-Movies/kodik
-- https://github.com/API-Movies/bazon
+- https://github.com/Movies-API/collaps
+- https://github.com/Movies-API/alloha
+- https://github.com/Movies-API/hdvb
+- https://github.com/Movies-API/videocdn
+- https://github.com/Movies-API/kodik
+- https://github.com/Movies-API/bazon
 
 ###### MIT License
