@@ -268,7 +268,7 @@
 
 						['collaps', 'alloha', 'hdvb', 'videocdn', 'kodik', 'bazon'].forEach(function(v) {
 							if (!dataPoints[t][s][v]) return;
-							$.getJSON("https://api-movies.github.io/" + v + "/statistics.json?" + Math.floor(Math.random() * 9e9), function(data) {
+							$.getJSON("https://movies-api.github.io/" + v + "/statistics.json?" + Math.floor(Math.random() * 9e9), function(data) {
 								for (var i = 0; i < data.length; i++) {
 									if (t === 'all') {
 										dataPoints[t][s][v].push({
@@ -330,7 +330,7 @@
 					tv_imdb_ids: "Уникальных сериалов (ID IMDb)"
 				}
 
-				$.getJSON("https://api-movies.github.io/unique.json?" + Math.floor(Math.random() * 9e9), function(data) {
+				$.getJSON("https://movies-api.github.io/unique.json?" + Math.floor(Math.random() * 9e9), function(data) {
 					['movie_kinopoisk_ids', 'tv_kinopoisk_ids', 'movie_imdb_ids', 'tv_imdb_ids'].forEach(function(f) {
 						unique[f] = new CanvasJS.Chart("unique-" + f, {
 							theme: "dark2",
@@ -427,7 +427,7 @@
   </head>
 	<body class="bg-dark text-white">
 		<style>#forkongithub a{width:100%;display:inline-block;background:#32373a;color:#fff;text-decoration:none;font-family:'Comfortaa',cursive;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#212529;color:#666;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#666;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{box-sizing:content-box;position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{box-sizing:content-box;width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:1px 1px 10px rgba(0,0,0,0.4);}}</style>
-		<span id="forkongithub"><a href="https://github.com/API-Movies/API-Movies.github.io">Fork me on GitHub</a></span>
+		<span id="forkongithub"><a href="https://github.com/Movies-API/Movies-API.github.io">Fork me on GitHub</a></span>
 		<div class="container text-white">
 			<div class="row justify-content-md-center text-white">
 				<div class="col text-white">
@@ -447,17 +447,17 @@
 										</th>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/collaps/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
+												<a href="https://movies-api.github.io/collaps/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/test.html#collaps" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
+												<a href="https://movies-api.github.io/test.html#collaps" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
 											</div>
 										</td>
 										<td style="border-radius: 0 10px 0 0;">
 											<div class="d-grid gap-2">
-												<a href="https://github.com/API-Movies/collaps" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
+												<a href="https://github.com/Movies-API/collaps" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
 											</div>
 										</td>
 									</tr>
@@ -469,17 +469,17 @@
 										</th>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/alloha/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
+												<a href="https://movies-api.github.io/alloha/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/test.html#alloha" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
+												<a href="https://movies-api.github.io/test.html#alloha" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://github.com/API-Movies/alloha" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
+												<a href="https://github.com/Movies-API/alloha" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
 											</div>
 										</td>
 									</tr>
@@ -491,17 +491,17 @@
 										</th>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/hdvb/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
+												<a href="https://movies-api.github.io/hdvb/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/test.html#hdvb" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
+												<a href="https://movies-api.github.io/test.html#hdvb" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://github.com/API-Movies/hdvb" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
+												<a href="https://github.com/Movies-API/hdvb" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
 											</div>
 										</td>
 									</tr>
@@ -513,17 +513,17 @@
 										</th>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/videocdn/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
+												<a href="https://movies-api.github.io/videocdn/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/test.html#videocdn" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
+												<a href="https://movies-api.github.io/test.html#videocdn" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://github.com/API-Movies/videocdn" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
+												<a href="https://github.com/Movies-API/videocdn" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
 											</div>
 										</td>
 									</tr>
@@ -535,17 +535,17 @@
 										</th>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/kodik/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
+												<a href="https://movies-api.github.io/kodik/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/test.html#kodik" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
+												<a href="https://movies-api.github.io/test.html#kodik" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
 											</div>
 										</td>
 										<td>
 											<div class="d-grid gap-2">
-												<a href="https://github.com/API-Movies/kodik" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
+												<a href="https://github.com/Movies-API/kodik" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
 											</div>
 										</td>
 									</tr>
@@ -557,17 +557,17 @@
 										</th>
 										<td style="border-bottom: 0;">
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/bazon/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
+												<a href="https://movies-api.github.io/bazon/index.json" target="_blank" class="btn btn-sm btn-dark text-white">API</a>
 											</div>
 										</td>
 										<td style="border-bottom: 0;">
 											<div class="d-grid gap-2">
-												<a href="https://api-movies.github.io/test.html#bazon" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
+												<a href="https://movies-api.github.io/test.html#bazon" target="_blank" class="btn btn-sm btn-dark text-white">TEST</a>
 											</div>
 										</td>
 										<td style="border-radius: 0 0 10px 0; border-bottom: 0;">
 											<div class="d-grid gap-2">
-												<a href="https://github.com/API-Movies/bazon" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
+												<a href="https://github.com/Movies-API/bazon" target="_blank" class="btn btn-sm btn-dark text-white">GitHub</a>
 											</div>
 										</td>
 									</tr>
